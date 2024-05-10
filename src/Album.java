@@ -1,16 +1,20 @@
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Album {
-    private LinkedHashSet<String> titles;
-    private LinkedHashSet<Song> songs;
+    private HashMap<String, ArrayList<Song>> songs;
+   public Album(){
+       songs = new HashMap<>();
+   }
 
-    public LinkedHashSet<String> getTitles(){
-        return new LinkedHashSet<String>();
+   public void addSong(String albumTitle, ArrayList<Song> listOfSongs){
+       if(!this.songs.containsKey(albumTitle)){
+           this.songs.put(albumTitle, listOfSongs);
+       }
+   }
+
+    public HashMap<String, ArrayList<Song>> getSongs() {
+        return songs;
     }
-
-    public LinkedHashSet<Song> getSongs(Song song){
-        return new LinkedHashSet<Song>();
-    }
-
-
 }

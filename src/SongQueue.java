@@ -26,9 +26,9 @@ public class SongQueue implements Controls{
 
     public void addSong(Song song, String userId){}
 
-    public Song getNextSong(){
-        return new Song();
-    }
+//    public Song getNextSong(){
+//        return new Song();
+//    }
 
     public void removeSong(Song song){
 

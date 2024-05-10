@@ -1,5 +1,6 @@
 public class User {
-    private final String userId;
+    private String userId;
+
 
     public User(String userId){
         this.userId = userId;
@@ -7,6 +8,4 @@ public class User {
     public String getUserId() {
         return userId;
     }
-
-
 }

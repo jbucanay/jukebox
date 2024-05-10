@@ -1,6 +1,5 @@
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.time.Duration;
+import java.util.*;
 
 public class Main {
 
@@ -35,6 +34,20 @@ public class Main {
             System.out.println("browsing by library");
         }
 
+        Song firstSong = new Song("Rap", "Euphoria", "Kendrick Lamar", Duration.parse("PT6M23S"));
+        Song secondSong = new Song("Rap", "Prada Dem", "Gunna", Duration.parse("PT2M45S"));
+        Song thirdSong = new Song("Pop", "Anti-Hero", "Tylor Swift", Duration.parse("PT3M20S"));
+        Song forthSong = new Song("Rock pop", "Maroon", "Taylor Swift", Duration.parse("PT3M38S"));
+        ArrayList<Song> listOfSongs = new ArrayList<>();
+        listOfSongs.add(thirdSong);
+        listOfSongs.add(forthSong);
+
+        Album firstAlbum = new Album();
+        firstAlbum.addSong("Midnights", listOfSongs);
+
+        System.out.println(firstAlbum.getSongs());
+
+
 
     }
 
@@ -47,7 +60,26 @@ public class Main {
         return  scanner.nextInt();
     }
 
+    //todo find songs by user
     public static void createArbitraryUsers(){
+        String[] fakeUsers = {
+                "John",
+                "Sophia",
+                "Liu",
+                "Mateo",
+                "Emily",
+                "Marius",
+                "Akello",
+                "Hiroshi",
+                "Ana",
+                "Charlotte",
+                "Marco"
+        };
+
+        for(String name: fakeUsers){
+            new User(name);
+        }
+
 
     }
 }
