@@ -8,25 +8,25 @@ public class Main {
         /*Welcome user, ask them to browse by songs, album, or library
         if they choose the wrong answer ask them to try again
         */
-        createArbitraryAdmin();
+        new AdminUser();
         System.out.println(AdminUser.getAdmin("Ana"));
         Scanner scanner = new Scanner(System.in);
         Set<Integer> userBrowseOptions= new HashSet<>();
         //This is trivial, just using it for practicing
-        for(int i= 1; i < 4; i++){
+        for(int i= 1; i < 6; i++){
             userBrowseOptions.add(i);
         }
 
         //Make sure user selects 1,2, or 3 they can't exist until they choose the correct one
         System.out.println("Welcome to the Jukebox type choice to browse by");
         int browseChoice = getUserBrowseOption(scanner);
-        while(!userBrowseOptions.contains(browseChoice)){
-            System.out.println("Please type 1,2,or 3");
-            browseChoice = getUserBrowseOption(scanner);
-            if(userBrowseOptions.contains(browseChoice)){
-                break;
+        do{
+            if(!userBrowseOptions.contains(browseChoice)){
+                System.out.println("Please type 1,2,or 3");
             }
-        }
+            System.out.println("Still going");
+            browseChoice = getUserBrowseOption(scanner);
+        } while(browseChoice != 5);
 
         //todo get songs from api (add this to own mthod
         //Todo, bring back the time to actual minutes and seconds, using seconds now in song duration for testing
@@ -80,26 +80,7 @@ public class Main {
         return  scanner.nextInt();
     }
 
-    //todo find songs by user
-    public static void createArbitraryAdmin(){
-        String[] fakeUsers = {
-                "John",
-                "Sophia",
-                "Liu",
-                "Mateo",
-                "Emily",
-                "Marius",
-                "Akello",
-                "Hiroshi",
-                "Ana",
-                "Charlotte",
-                "Marco"
-        };
-
-        for(String name: fakeUsers){
-            new AdminUser(name);
-        }
-
+    public static void addSongs(){
 
     }
 }

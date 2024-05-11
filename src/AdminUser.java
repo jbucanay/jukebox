@@ -1,9 +1,8 @@
 import java.util.Arrays;
 import java.util.HashSet;
-public final class AdminUser extends User{
+public final class AdminUser{
     private static HashSet<String> admins;
-    public AdminUser(String userId){
-        super(userId);
+    public AdminUser(){
         admins = new HashSet<>();
         createAdmins();
     }
