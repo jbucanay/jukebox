@@ -10,6 +10,10 @@ public class SongQueue implements Controls{
       this.playlist = new LinkedList<>();
     }
 
+
+    /**
+     * todo use <a href="https://stackify.com/heres-how-to-calculate-elapsed-time-in-java/">...</a> to do a duration calculation
+     */
     @Override
     public void play() {
 
