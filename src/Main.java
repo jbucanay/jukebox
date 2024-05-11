@@ -25,15 +25,7 @@ public class Main {
             }
         }
 
-        //User browsing by category
-        if(browseChoice == 1){
-            System.out.println("browsing by song");
-        } else if(browseChoice == 2){
-            System.out.println("browsing by album");
-        } else if(browseChoice == 3){
-            System.out.println("browsing by library");
-        }
-
+        //todo get songs from api (add this to own mthod
         Song firstSong = new Song("Rap", "Euphoria", "Kendrick Lamar", Duration.parse("PT6M23S"));
         Song secondSong = new Song("Rap", "Prada Dem", "Gunna", Duration.parse("PT2M45S"));
         Song thirdSong = new Song("Pop", "Anti-Hero", "Tylor Swift", Duration.parse("PT3M20S"));
@@ -46,6 +38,21 @@ public class Main {
         firstAlbum.addSong("Midnights", listOfSongs);
 
         System.out.println(firstAlbum.getSongs());
+
+        //User browsing by category
+        if(browseChoice == 1){
+            System.out.println("Type the song number to add to queue");
+            System.out.printf("Type %s : %s%n", firstSong.getSongNumber() , firstSong.titleAndArtist());
+            System.out.printf("Type %s : %s%n", secondSong.getSongNumber() , secondSong.titleAndArtist());
+            System.out.print("Choice: ");
+            //todo check if the number is valid
+            int songId = scanner.nextInt();
+        } else if(browseChoice == 2){
+            System.out.println("browsing by album");
+        } else if(browseChoice == 3){
+            System.out.println("browsing by library");
+        }
+
 
 
 
