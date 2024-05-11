@@ -1,8 +1,14 @@
-import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class SongQueue implements Controls{
 
-    private HashMap<String, Song> playlist;
+    private Queue<Song> playlist;
+
+    public SongQueue(){
+      this.playlist = new LinkedList<>();
+    }
 
     @Override
     public void play() {
@@ -24,7 +30,15 @@ public class SongQueue implements Controls{
 
     }
 
-    public void addSong(Song song, String userId){}
+    public void addSong(Song song){
+        if(!this.playlist.contains(song)){
+            System.out.println("Song added");
+            this.playlist.add(song);
+        } else {
+            System.out.println("song exists in queue");
+        }
+
+    }
 
 //    public Song getNextSong(){
 //        return new Song();

@@ -35,6 +35,7 @@ public class Main {
         listOfSongs.add(forthSong);
 
         Album firstAlbum = new Album();
+        SongQueue songQueue = new SongQueue();
         firstAlbum.addSong("Midnights", listOfSongs);
 
         System.out.println(firstAlbum.getSongs());
@@ -44,6 +45,9 @@ public class Main {
             System.out.println("Type the song number to add to queue");
             System.out.printf("Type %s : %s%n", firstSong.getSongNumber() , firstSong.titleAndArtist());
             System.out.printf("Type %s : %s%n", secondSong.getSongNumber() , secondSong.titleAndArtist());
+            songQueue.addSong(firstSong);
+            songQueue.addSong(firstSong);
+            songQueue.addSong(secondSong);
             System.out.print("Choice: ");
             //todo check if the number is valid
             int songId = scanner.nextInt();
