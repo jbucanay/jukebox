@@ -1,3 +1,4 @@
+import javax.sound.midi.Soundbank;
 import java.time.Duration;
 import java.util.*;
 
@@ -7,6 +8,8 @@ public class Main {
         /*Welcome user, ask them to browse by songs, album, or library
         if they choose the wrong answer ask them to try again
         */
+        createArbitraryAdmin();
+        System.out.println(AdminUser.getAdmin("Ana"));
         Scanner scanner = new Scanner(System.in);
         Set<Integer> userBrowseOptions= new HashSet<>();
         //This is trivial, just using it for practicing
@@ -26,10 +29,11 @@ public class Main {
         }
 
         //todo get songs from api (add this to own mthod
-        Song firstSong = new Song("Rap", "Euphoria", "Kendrick Lamar", Duration.parse("PT6M23S"));
-        Song secondSong = new Song("Rap", "Prada Dem", "Gunna", Duration.parse("PT2M45S"));
-        Song thirdSong = new Song("Pop", "Anti-Hero", "Tylor Swift", Duration.parse("PT3M20S"));
-        Song forthSong = new Song("Rock pop", "Maroon", "Taylor Swift", Duration.parse("PT3M38S"));
+        //Todo, bring back the time to actual minutes and seconds, using seconds now in song duration for testing
+        Song firstSong = new Song("Rap", "Euphoria", "Kendrick Lamar", Duration.parse("PT10S"));
+        Song secondSong = new Song("Rap", "Prada Dem", "Gunna", Duration.parse("PT15S"));
+        Song thirdSong = new Song("Pop", "Anti-Hero", "Tylor Swift", Duration.parse("PT20S"));
+        Song forthSong = new Song("Rock pop", "Maroon", "Taylor Swift", Duration.parse("PT19S"));
         ArrayList<Song> listOfSongs = new ArrayList<>();
         listOfSongs.add(thirdSong);
         listOfSongs.add(forthSong);
@@ -48,9 +52,11 @@ public class Main {
             songQueue.addSong(firstSong);
             songQueue.addSong(firstSong);
             songQueue.addSong(secondSong);
+            songQueue.start();
             System.out.print("Choice: ");
             //todo check if the number is valid
             int songId = scanner.nextInt();
+            System.out.println("Just print for now");
         } else if(browseChoice == 2){
             System.out.println("browsing by album");
         } else if(browseChoice == 3){
@@ -66,13 +72,16 @@ public class Main {
         System.out.println("""
                 Type 1 - Song
                 Type 2 - Album
-                Type 3 - Library""");
+                Type 3 - Library
+                Type 4 - Admin access - skip, remove, add songs
+                Type 5 - Exit
+                """);
         System.out.print("Choice: ");
         return  scanner.nextInt();
     }
 
     //todo find songs by user
-    public static void createArbitraryUsers(){
+    public static void createArbitraryAdmin(){
         String[] fakeUsers = {
                 "John",
                 "Sophia",
@@ -88,7 +97,7 @@ public class Main {
         };
 
         for(String name: fakeUsers){
-            new User(name);
+            new AdminUser(name);
         }
 
 

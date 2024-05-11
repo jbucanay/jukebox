@@ -1,5 +1,5 @@
 public interface Controls {
-    void play();
+//    void play();
     void skip();
     // create some list of fave songs
     void favorite();
