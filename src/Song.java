@@ -21,8 +21,12 @@ public class Song {
         this.songNumber = count;
     }
 
+    public static int numOfObjects() {
+        return count;
+    }
+
     public int getSongNumber(){
-     return this.songNumber;
+        return this.songNumber;
     }
 
     public String getGenre() {

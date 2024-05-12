@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.HashSet;
-public final class AdminUser{
+public final class AdminUser {
     private static HashSet<String> admins;
     public AdminUser(){
         admins = new HashSet<>();

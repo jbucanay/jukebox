@@ -38,18 +38,24 @@ public class SongQueue extends Thread implements Controls{
             Now playing: Prada Dem - Gunna
             Before nano, time it tookPT2M45.00487S
             */
+
+            /* start testing here
             Instant start = Instant.now();
+             */
             try {
                 Thread.sleep(currentSong.getDuration().toMillis(), currentSong.getDuration().getNano());
             }catch(InterruptedException e){
                 e.printStackTrace();
             }
 
-            Instant end = Instant.now();
-            Duration howlong = Duration.between(start, end);
-            System.out.println("Before nano, time it took" + howlong);
+            /* used for testing time it took to play song
+                Instant end = Instant.now();
+                Duration howlong = Duration.between(start, end);
+                System.out.println("Before nano, time it took %n" + howlong);
+             */
+            String nextValue = !playlist.isEmpty() ? "Next song " + playlist.peek().getTitle() : "";
 
-            System.out.println("Next song: " + (playlist.isEmpty() ? "None" : playlist.peek().getTitle()));
+            System.out.println(nextValue);
         }
     }
 
