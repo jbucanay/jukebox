@@ -1,3 +1,6 @@
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.out;
 
@@ -54,5 +57,27 @@ public final class Helpers {
                 Type 4 - Admin access: skip, remove, add songs
                 Type 5 - Exit""");
         return  validInt();
+    }
+
+    //When user adds song to queue, ask them if they want to keep browsing or exit
+    public static int exitBrowsing(){
+        out.println("Type 10 - exit browsing songs");
+        out.println("Type any number to keep browsing songs");
+        return validInt();
+    }
+
+    /*
+    crate objects of songs and return them as a list for user to browse
+     */
+
+    public static ArrayList<Song> listOfSongs(){
+        //Todo, get songs from api
+        //Todo, using seconds for testing, down the down use songs real duration
+        Song firstSong = new Song("Rap", "Euphoria", "Kendrick Lamar", Duration.parse("PT10S"));
+        Song secondSong = new Song("Rap", "Prada Dem", "Gunna", Duration.parse("PT15S"));
+        Song thirdSong = new Song("Pop", "Anti-Hero", "Tylor Swift", Duration.parse("PT20S"));
+        Song forthSong = new Song("Rock pop", "Maroon", "Taylor Swift", Duration.parse("PT19S"));
+
+        return new ArrayList<>(Arrays.asList(firstSong, secondSong, thirdSong, forthSong));
     }
 }

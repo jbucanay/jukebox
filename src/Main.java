@@ -11,24 +11,13 @@ public class Main {
         new AdminUser();
         SongQueue songQueue = new SongQueue();
         Scanner scanner = new Scanner(System.in);
-        //todo get songs from api (add this to own mthod
-        //Todo, bring back the time to actual minutes and seconds, using seconds now in song duration for testing
-        Song firstSong = new Song("Rap", "Euphoria", "Kendrick Lamar", Duration.parse("PT10S"));
-        Song secondSong = new Song("Rap", "Prada Dem", "Gunna", Duration.parse("PT15S"));
-        Song thirdSong = new Song("Pop", "Anti-Hero", "Tylor Swift", Duration.parse("PT20S"));
-        Song forthSong = new Song("Rock pop", "Maroon", "Taylor Swift", Duration.parse("PT19S"));
-
-        ArrayList<Song> listOfSongs = new ArrayList<>(Arrays.asList(firstSong, secondSong, thirdSong, forthSong));
 
 
-        Album firstAlbum = new Album();
-        firstAlbum.addSong("Midnights", listOfSongs);
-        Set<Integer> userBrowseOptions= new HashSet<>();
 
-        //This is trivial, just using it for practicing
-        for(int i= 1; i < 6; i++){
-            userBrowseOptions.add(i);
-        }
+//        Album firstAlbum = new Album();
+//        firstAlbum.addSong("Midnights", listOfSongs);
+        Set<Integer> userBrowseOptions= new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+
 
         //Make sure user selects 1,2, or 3 they can't exist until they choose the correct one
         out.println("Welcome to the Jukebox type choice to browse by");
@@ -36,14 +25,16 @@ public class Main {
         songQueue.start();
         do{
             if(!userBrowseOptions.contains(browseChoice)){
-                out.println("Please type 1,2,3,4,5, or 6");
+                out.println("Please type 1,2,3,4,or 5");
             }
             if(browseChoice == 1){
-                for(Song song: listOfSongs){
-                    out.printf("Type %s : %s%n", song.getSongNumber(), song.titleAndArtist());
-                }
-                int userSelectedSong = Helpers.validInt(0,listOfSongs.size() -1);
-                songQueue.addSong(listOfSongs.get(userSelectedSong));
+                do{
+                    for (Song song : Helpers.listOfSongs()) {
+                        out.printf("Type %s : %s%n", song.getSongNumber(), song.titleAndArtist());
+                    }
+                    int userSelectedSong = Helpers.validInt(0, Helpers.listOfSongs().size() - 1);
+                    songQueue.addSong(Helpers.listOfSongs().get(userSelectedSong));
+                } while(Helpers.exitBrowsing() !=10);
             } else if(browseChoice == 2){
                 out.println("browsing by album");
             } else if(browseChoice == 3){
