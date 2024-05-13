@@ -33,21 +33,17 @@ public class Main {
         //Make sure user selects 1,2, or 3 they can't exist until they choose the correct one
         out.println("Welcome to the Jukebox type choice to browse by");
         int browseChoice = Helpers.getUserBrowseOption();
+        songQueue.start();
         do{
             if(!userBrowseOptions.contains(browseChoice)){
                 out.println("Please type 1,2,3,4,5, or 6");
             }
             if(browseChoice == 1){
-                out.println("Type the song number to add to the queue");
-                out.printf("Type %s : %s%n", firstSong.getSongNumber() , firstSong.titleAndArtist());
-                out.printf("Type %s : %s%n", secondSong.getSongNumber() , secondSong.titleAndArtist());
-
-
-                out.print("Choice: ");
-                songQueue.start();
-                //todo check if the number is valid
-                int songId = scanner.nextInt();
-                out.println("Just print for now");
+                for(Song song: listOfSongs){
+                    out.printf("Type %s : %s%n", song.getSongNumber(), song.titleAndArtist());
+                }
+                int userSelectedSong = Helpers.validInt(0,listOfSongs.size() -1);
+                songQueue.addSong(listOfSongs.get(userSelectedSong));
             } else if(browseChoice == 2){
                 out.println("browsing by album");
             } else if(browseChoice == 3){

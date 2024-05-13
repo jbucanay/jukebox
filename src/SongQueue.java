@@ -19,7 +19,7 @@ public class SongQueue extends Thread implements Controls{
     @Override
     public void run() {
         //Simulate playing song
-        while(!playlist.isEmpty()){
+        if(!playlist.isEmpty()){
             Song currentSong = playlist.poll();
             System.out.println("Now playing: "+ currentSong.titleAndArtist());
 

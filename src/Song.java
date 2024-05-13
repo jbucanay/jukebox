@@ -7,7 +7,7 @@ public class Song {
     private String title;
     private String artist;
     //track when the song was created
-    private static int count = 0;
+    private static int count = -1;
     private int songNumber;
 
     private Duration duration; //this will need to be in minutes/seconds
