@@ -1,16 +1,19 @@
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class Song {
 
 
-    private String genre;
-    private String title;
-    private String artist;
+    private final String genre;
+    private final String title;
+    private final String artist;
     //track when the song was created
     private static int count = -1;
-    private int songNumber;
 
-    private Duration duration; //this will need to be in minutes/seconds
+    private static final ArrayList<Song> songList = new ArrayList<>();
+    private final int songNumber;
+
+    private final Duration duration; //this will need to be in minutes/seconds
 
     public Song(String genre, String title, String artist, Duration duration){
         this.genre = genre;
@@ -19,18 +22,15 @@ public class Song {
         this.duration = duration;
         count += 1;
         this.songNumber = count;
+        songList.add(this);
     }
 
-    public static int numOfObjects() {
-        return count;
+    public static ArrayList<Song> listOfSongs(){
+        return songList;
     }
 
     public int getSongNumber(){
         return this.songNumber;
-    }
-
-    public String getGenre() {
-        return genre;
     }
 
     public String getTitle() {

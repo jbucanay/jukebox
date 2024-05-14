@@ -1,4 +1,3 @@
-import java.time.Duration;
 import java.util.*;
 import static java.lang.System.out;
 
@@ -10,16 +9,14 @@ public class Main {
         */
         new AdminUser();
         SongQueue songQueue = new SongQueue();
-        Scanner scanner = new Scanner(System.in);
-
-
-
-//        Album firstAlbum = new Album();
-//        firstAlbum.addSong("Midnights", listOfSongs);
         Set<Integer> userBrowseOptions= new HashSet<>(Arrays.asList(1,2,3,4,5,6));
 
 
-        //Make sure user selects 1,2, or 3 they can't exist until they choose the correct one
+        /*
+        Kick off the application by asking the user how they would like to browse
+        they must choose a valid option available to them, or they are stuck in an infinite loop
+        when songs added to queue show them the songs that are playing
+         */
         out.println("Welcome to the Jukebox type choice to browse by");
         int browseChoice = Helpers.getUserBrowseOption();
         songQueue.start();
@@ -29,14 +26,15 @@ public class Main {
             }
             if(browseChoice == 1){
                 do{
-                    for (Song song : Helpers.listOfSongs()) {
-                        out.printf("Type %s : %s%n", song.getSongNumber(), song.titleAndArtist());
-                    }
-                    int userSelectedSong = Helpers.validInt(0, Helpers.listOfSongs().size() - 1);
-                    songQueue.addSong(Helpers.listOfSongs().get(userSelectedSong));
+                    Helpers.availableSongs();
+                    //Todo: this list is repeated when the user chooses to continue browsing, again, figure out to not repeat
+                    int userSelectedSong = Helpers.validInt(0, Song.listOfSongs().size() - 1);
+                    songQueue.addSong(Song.listOfSongs().get(userSelectedSong));
                 } while(Helpers.exitBrowsing() !=10);
             } else if(browseChoice == 2){
-                out.println("browsing by album");
+                out.println("Copy and paste album to view songs");
+                Helpers.availableAlbums();
+                Helpers.getSongFromAlbums();
             } else if(browseChoice == 3){
                 out.println("browsing by library");
             }

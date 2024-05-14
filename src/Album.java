@@ -1,20 +1,20 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class Album {
-    private HashMap<String, ArrayList<Song>> songs;
+    private HashMap<String, List<Song>> albumsByartsits;
    public Album(){
-       songs = new HashMap<>();
+       albumsByartsits = new HashMap<>();
    }
 
    public void addSong(String albumTitle, ArrayList<Song> listOfSongs){
-       if(!this.songs.containsKey(albumTitle)){
-           this.songs.put(albumTitle, listOfSongs);
-       }
+           this.albumsByartsits.put(albumTitle, listOfSongs);
    }
 
-    public HashMap<String, ArrayList<Song>> getSongs() {
-        return songs;
+    public HashMap<String, List<Song>> listOfAlbums() {
+        return albumsByartsits;
     }
 }
