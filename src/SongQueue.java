@@ -76,10 +76,10 @@ public class SongQueue extends Thread implements Controls{
 
     public void addSong(Song song){
         if(!this.playlist.contains(song)){
-            System.out.println("Song added");
+            System.out.println("Song added to que");
             this.playlist.add(song);
         } else {
-            System.out.println("song exists in queue");
+            System.out.println("Song exists in queue");
         }
 
     }

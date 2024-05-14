@@ -16,6 +16,14 @@ public final class Helpers {
     private Helpers(){
     }
 
+    public static void niceString(String string){
+        String initialStr = String.format("* %s *", string);
+        String star = "*".repeat(initialStr.length());
+        out.println(star);
+        out.println(initialStr);
+        out.println(star);
+    }
+
     //validates user integer input, won't exit until the input is valid
     public static int validInt(){
         while(true){
@@ -23,7 +31,7 @@ public final class Helpers {
                 out.print("Choice: ");
                 return Integer.parseInt(scanner.nextLine().trim());
             } catch (NumberFormatException e){
-                out.println("invalid number. Try again");
+                out.println("Invalid. Try again");
             }
         }
     }
@@ -61,9 +69,9 @@ public final class Helpers {
     }
 
     //When user adds song to queue, ask them if they want to keep browsing or exit
-    public static int exitBrowsing(){
-        out.println("Type 10 - exit browsing songs");
-        out.println("Type any number to continue browsing songs");
+    public static int exitBrowsing(String browsingType){
+        out.printf("Type 10 - exit browsing %s%n", browsingType);
+        out.printf("Type any number to continue browsing %s%n", browsingType);
         return validInt();
     }
 
@@ -71,7 +79,7 @@ public final class Helpers {
     crate objects of songs and return them as a list for user to browse
      */
 
-    public static void availableSongs(){
+    public static void createSongs(){
         //Todo, get songs from api
         //Todo, using seconds for testing, down the down use songs real duration
         new Song("Rap", "HUMBLE.", "Kendrick Lamar", Duration.parse("PT25S"));
@@ -99,14 +107,16 @@ public final class Helpers {
         new Song("Electronic", "I Remember", "deadmau5", Duration.parse("PT25S"));
         new Song("Hip Hop", "Goosebumps", "Travis Scott", Duration.parse("PT30S"));
         new Song("Hip Hop", "SICKO MODE", "Travis Scott", Duration.parse("PT20S"));
-
-        for (Song song : Song.listOfSongs()) {
-            out.printf("Type %s : %s%n", song.getSongNumber(), song.titleAndArtist());
-        }
-
     }
 
-    public static void availableAlbums(){
+    public static ArrayList<Song> availableSongs(ArrayList<Song> songList){
+        for (int i=0; i < songList.size(); i++) {
+            out.printf("Type %s : %s%n", i, songList.get(i).titleAndArtist());
+        }
+        return songList;
+    }
+
+    public static void createAlbums(){
        Map<String, List<Song>> songsByArtists = Song.listOfSongs().stream().collect(Collectors.groupingBy(Song::getArtist));
        albums.addSong("Take Me To Church - Hozier", (ArrayList<Song>) songsByArtists.get("Hozier"));
        albums.addSong("X - Ed Sheeran", (ArrayList<Song>) songsByArtists.get("Ed Sheeran"));
@@ -115,23 +125,22 @@ public final class Helpers {
        albums.addSong("ASTROWORLD - Travis Scott", (ArrayList<Song>) songsByArtists.get("Travis Scott"));
        albums.addSong("For Lack of a Better Name - deadmau5", (ArrayList<Song>) songsByArtists.get("deadmau5"));
        albums.addSong("From A Room: Volume 1 - Chris Stapleton", (ArrayList<Song>) songsByArtists.get("Chris Stapleton"));
+    }
 
-       out.println("""
-               
-               """);
+    public static void availableAlbums(){
         for(Map.Entry<String, List<Song>> i: albums.listOfAlbums().entrySet()){
             System.out.println(i.getKey());
         }
     }
 
-    public static void getSongFromAlbums(){
+    public static ArrayList<Song> getSongFromAlbums(){
         out.print("Choice: ");
         String albumName = scanner.nextLine().trim();
         if(albums.listOfAlbums().containsKey(albumName)){
-            out.println(albums.listOfAlbums().get(albumName));
-        } else {
-            out.println("try again");
+            return availableSongs((ArrayList<Song>) albums.listOfAlbums().get(albumName));
         }
+        out.println("not a valid album");
+        return null;
     }
 
 

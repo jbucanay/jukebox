@@ -5,7 +5,7 @@ import java.util.Map;
 
 
 public class Album {
-    private HashMap<String, List<Song>> albumsByartsits;
+    private final HashMap<String, List<Song>> albumsByartsits;
    public Album(){
        albumsByartsits = new HashMap<>();
    }
