@@ -1,14 +1,14 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Library {
-    private ArrayList<String> titles;
-    private ArrayList<Album> albums;
-
-    public ArrayList<String> getTitles() {
-        return titles;
+    private Map<String, List<Song>> songByArtists = new HashMap<>();
+    public void addSongsByArtists(Map<String, List<Song>> songByArtists){
+        this.songByArtists = songByArtists;
     }
 
-    public ArrayList<Album> getAlbums() {
-        return albums;
+    public Map<String, List<Song>> getSongByArtists(){
+        return songByArtists;
     }
 }

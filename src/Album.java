@@ -5,16 +5,13 @@ import java.util.Map;
 
 
 public class Album {
-    private final HashMap<String, List<Song>> albumsByartsits;
-   public Album(){
-       albumsByartsits = new HashMap<>();
-   }
+    private final HashMap<String, List<Song>> albumsByArtists = new HashMap<>();
 
    public void addSong(String albumTitle, ArrayList<Song> listOfSongs){
-           this.albumsByartsits.put(albumTitle, listOfSongs);
+           this.albumsByArtists.put(albumTitle, listOfSongs);
    }
 
     public HashMap<String, List<Song>> listOfAlbums() {
-        return albumsByartsits;
+        return albumsByArtists;
     }
 }

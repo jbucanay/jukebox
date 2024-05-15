@@ -11,6 +11,7 @@ make it final so, it's not extendable
 public final class Helpers {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Album albums = new Album();
+    private static final Library library = new Library();
 
     //private contructor to make class not instantiatable, creating new objects new helpers i.e.
     private Helpers(){
@@ -141,6 +142,18 @@ public final class Helpers {
         }
         out.println("not a valid album");
         return null;
+    }
+
+    public static void createLibrary(){
+        //artist, genre, duration
+        Map<String, List<Song>> songsByArtists = Song.listOfSongs().stream().collect(Collectors.groupingBy(Song::getArtist));
+        Map<Duration, List<Song>> songsByDuration = Song.listOfSongs().stream().collect(Collectors.groupingBy(Song::getDuration));
+        Map<String, List<Song>> songsByGenre = Song.listOfSongs().stream().collect(Collectors.groupingBy(Song::getGenre));
+        library.addSongsByArtists(songsByArtists);
+    }
+
+    public static Map<String, List<Song>> getSongsByArtists(){
+        return library.getSongByArtists();
     }
 
 

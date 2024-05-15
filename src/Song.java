@@ -2,8 +2,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class Song {
-
-
     private final String genre;
     private final String title;
     private final String artist;
@@ -43,6 +41,10 @@ public class Song {
 
     public Duration getDuration() {
         return duration;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 
     public String titleAndArtist(){

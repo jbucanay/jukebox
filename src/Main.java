@@ -13,6 +13,7 @@ public class Main {
         // create admins when ready to use them
         Helpers.createSongs();
         Helpers.createAlbums();
+        Helpers.createLibrary();
         SongQueue songQueue = new SongQueue();
         Set<Integer> userBrowseOptions= new HashSet<>(Arrays.asList(1,2,3,4,5,6));
 
@@ -43,6 +44,7 @@ public class Main {
                 } while (Helpers.exitBrowsing("albums") !=10);
             } else if(browseChoice == 3){
                 out.println("browsing by library");
+                out.println(Helpers.getSongsByArtists());
             }
             browseChoice = Helpers.getUserBrowseOption();
         } while(browseChoice != 5);
