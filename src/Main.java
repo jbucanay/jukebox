@@ -20,7 +20,6 @@ public class Main {
 
         Helpers.niceString("Welcome to the Jukebox type choice to browse by");
         int browseChoice = Helpers.getUserBrowseOption();
-        songQueue.start();
         do{
             if(!userBrowseOptions.contains(browseChoice)){
                 out.println("** Please type 1,2,3,4,or 5 **");

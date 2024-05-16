@@ -156,7 +156,7 @@ public final class Helpers {
     }
 
     public static Song getLibrary(int browseType){
-        Song findSongInLibrary = switch (browseType){
+        return switch (browseType){
             case 1 -> {
                 Set<String> artists= library.getSongByArtists().keySet();
                 int n = artists.size();
@@ -176,9 +176,11 @@ public final class Helpers {
             }
 //            case 2 -> library.getSongsByDuration();
 //            case 3 -> library.getSongsByGenre();
-            default -> null;
+            default -> {
+                out.println("Please type 1,2, or 3");
+                yield null;
+            }
         };
-        return findSongInLibrary;
     }
 
 
