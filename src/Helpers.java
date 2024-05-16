@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.time.Duration;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -150,10 +151,34 @@ public final class Helpers {
         Map<Duration, List<Song>> songsByDuration = Song.listOfSongs().stream().collect(Collectors.groupingBy(Song::getDuration));
         Map<String, List<Song>> songsByGenre = Song.listOfSongs().stream().collect(Collectors.groupingBy(Song::getGenre));
         library.addSongsByArtists(songsByArtists);
+        library.addSongsByDuration(songsByDuration);
+        library.addSongsByGenre(songsByGenre);
     }
 
-    public static Map<String, List<Song>> getSongsByArtists(){
-        return library.getSongByArtists();
+    public static Song getLibrary(int browseType){
+        Song findSongInLibrary = switch (browseType){
+            case 1 -> {
+                Set<String> artists= library.getSongByArtists().keySet();
+                int n = artists.size();
+                String[] arrArtists = new String[n];
+                arrArtists = artists.toArray(arrArtists);
+                out.println("Which artist songs would you like to see");
+                for(int i= 0; i <arrArtists.length; i++){
+                    out.printf("Type %s - %s%n", i, arrArtists[i]);
+                }
+                int userSelectArtist = validInt(0, arrArtists.length - 1);
+                String chosenSong = arrArtists[userSelectArtist];
+                ArrayList<Song> songs = (ArrayList<Song>) library.getSongByArtists().get(chosenSong);
+                out.println("Select song to add to queue");
+                availableSongs(songs);
+                int selectedSong = validInt(0, songs.size() -1);
+                yield songs.get(selectedSong);
+            }
+//            case 2 -> library.getSongsByDuration();
+//            case 3 -> library.getSongsByGenre();
+            default -> null;
+        };
+        return findSongInLibrary;
     }
 
 

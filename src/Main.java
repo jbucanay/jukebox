@@ -43,8 +43,17 @@ public class Main {
 
                 } while (Helpers.exitBrowsing("albums") !=10);
             } else if(browseChoice == 3){
-                out.println("browsing by library");
-                out.println(Helpers.getSongsByArtists());
+                do {
+                    out.println("Select the library to browse");
+                    out.println("""
+                        Type 1 - Songs by artists
+                        Type 2 - Songs by duration
+                        Type 3 - Songs by genre
+                        """);
+                    int userSelectedLibrary = Helpers.validInt(1,3);
+                    Song songToAdd = Helpers.getLibrary(userSelectedLibrary);
+                    songQueue.addSong(songToAdd);
+                } while(Helpers.exitBrowsing("libraries") !=10);
             }
             browseChoice = Helpers.getUserBrowseOption();
         } while(browseChoice != 5);
