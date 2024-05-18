@@ -1,6 +1,3 @@
-import java.time.Duration;
-import java.time.Instant;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -16,12 +13,24 @@ public class SongQueue extends Thread implements Controls{
     /**
      * todo use <a href="https://stackify.com/heres-how-to-calculate-elapsed-time-in-java/">...</a> to do a duration calculation
      */
-    @Override
-    public void run() {
+
+    public synchronized void play() {
         //Simulate playing song
-        if(!playlist.isEmpty()){
+        while(!playlist.isEmpty()){
             Song currentSong = playlist.poll();
-            System.out.println("Now playing: "+ currentSong.titleAndArtist());
+            System.out.printf("Now playing: %s%n", currentSong.titleAndArtist());
+            try {
+                Thread.sleep(currentSong.getDuration().toMillis(), currentSong.getDuration().getNano());
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+
+            String nextValue = !playlist.isEmpty() ? "Next song " + playlist.peek().getTitle() : "";
+
+            System.out.printf(nextValue);
+
+        }
+
 
             //Wait for the duration fo the song
             /* For testing purposes, using millisecond
@@ -42,22 +51,15 @@ public class SongQueue extends Thread implements Controls{
             /* start testing here
             Instant start = Instant.now();
              */
-            try {
-                Thread.sleep(currentSong.getDuration().toMillis(), currentSong.getDuration().getNano());
-            }catch(InterruptedException e){
-                e.printStackTrace();
-            }
+
 
             /* used for testing time it took to play song
                 Instant end = Instant.now();
                 Duration howlong = Duration.between(start, end);
                 System.out.println("Before nano, time it took %n" + howlong);
              */
-            String nextValue = !playlist.isEmpty() ? "Next song " + playlist.peek().getTitle() : "";
 
-            System.out.println(nextValue);
         }
-    }
 
     @Override
     public void skip() {
@@ -74,7 +76,7 @@ public class SongQueue extends Thread implements Controls{
 
     }
 
-    public void addSong(Song song){
+    public synchronized void addSong(Song song){
         if(!this.playlist.contains(song)){
             System.out.println("Song added to queue");
             this.playlist.add(song);
